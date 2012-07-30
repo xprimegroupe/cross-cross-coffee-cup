@@ -1,0 +1,64 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}Gallery{% endblock %}
+{% block head %}
+    {{ parent() }}
+<script src="/js/rotation.js"></script>
+<script>
+  $(function() {
+    $('#grid li:nth-child(3)').addClass('last');
+    $('#grid li').last().addClass('last');
+  });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <ul id="grid">
+        {% for cup in cups %}
+                <li>
+                    <div class="container">
+                        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel">
+                        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel_bis">
+                        <img src="/img/illus/cache_small.png" alt="cache" class="cache">
+                    </div>
+                    <a href="{{ url('c4_cup', {id: cup.id}) }}" class="coffee_name">
+                        <span>{% if cup.name %}{{ cup.name|e }}{% else %}crosscross{% endif %}</span>
+                    </a>
+                    <h3 class="creator">
+                        Par {% if cup.twitter %}{{ cup.twitter|e }}{% else %}Anonymous{% endif %}
+                    </h3>
+                </li>
+    {% else %}
+                <li><em>no cup found</em></li>
+    {% endfor %}
+            </ul>
+
+            <div class="cta_container make_one">
+                <div>
+                    <a href="{{ url('homepage') }}" class="cta">Make one !</a>
+                </div>
+            </div>
+
+            <div id="pager">
+                <div>
+                    {% if start == 0 %}
+                        <span>Page précédente</span>
+                    {% else %}
+                        <a href="{{ url('c4_gallery', {start: prev}) }}">Page précédente</a>
+                    {% endif %}
+                    </div>
+
+                    <p>Page {{ current_page|e }} sur {{ total_page|e }}</p>
+
+                    <div>
+                    {% if start+6 >= total %}
+                            <span>Page suivante</span>
+                    {% else %}
+                            <a href="{{ url('c4_gallery', {start: next}) }}">Page suivante</a>
+                    {% endif %}
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
+

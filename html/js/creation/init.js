@@ -545,8 +545,8 @@ $j(document).ready(function() {
     $j('#vector_render').val("")
     $j('#vector_render').val(svg)
 
-    $j.post("save_vector.php", { twitter: twitter, name: name, svg: img }, function(data) {
-        document.location.href = "single.php?id=" + data;
+    $j.post("/c4/cup", { twitter: twitter, name: name, svg: img }, function(id) {
+        document.location.href = "/c4/cup/" + id;
       } 
     );
     reset_size();

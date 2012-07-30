@@ -1,6 +1,22 @@
 {
-    "hash": "f55e423b4bbb397c3bf6a749c12db1a9",
+    "hash": "009b87c1d832cc9b0652fa40d6150401",
     "packages": [
+        {
+            "package": "doctrine/common",
+            "version": "2.2.2"
+        },
+        {
+            "package": "doctrine/dbal",
+            "version": "2.2.x-dev",
+            "source-reference": "b961a3fce6bf220f1dca47d7d747b9074bea4730",
+            "commit-date": "1341779435"
+        },
+        {
+            "package": "monolog/monolog",
+            "version": "dev-master",
+            "source-reference": "59fb9f41be22b246f5e5d3bd8a012ed77f44a7d0",
+            "commit-date": "1342167011"
+        },
         {
             "package": "pimple/pimple",
             "version": "dev-master",
@@ -24,6 +40,10 @@
             "version": "dev-master",
             "source-reference": "5f89e59e1bd6c2f1a6b92a73c6518ae83d35378f",
             "commit-date": "1343636587"
+        },
+        {
+            "package": "swiftmailer/swiftmailer",
+            "version": "v4.1.8"
         },
         {
             "package": "symfony/event-dispatcher",
@@ -72,6 +92,30 @@
             "version": "dev-master",
             "source-reference": "909194d1d24900d99a32df154513cd8cf9936534",
             "commit-date": "1343512949"
+        },
+        {
+            "package": "symfony/twig-bridge",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/twig-bridge",
+            "version": "dev-master",
+            "source-reference": "1e9873087f35a730d8d8d01050efbde724e76815",
+            "commit-date": "1343229695"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "alias-pretty-version": "1.9.x-dev",
+            "alias-version": "1.9.9999999.9999999-dev"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "51c866f415bbee670cd9ba13591307bce8dabdca",
+            "commit-date": "1343464333"
         }
     ],
     "packages-dev": null,
