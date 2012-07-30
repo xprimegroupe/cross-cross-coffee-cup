@@ -70,7 +70,7 @@ h2{text-transform: uppercase; margin:0 0 15px 0;}
 
 /*header*/
 header{text-align: center; background: url(../img/bg/header.png) 50% 20px no-repeat; width:1020px; margin:0 auto; margin-bottom:80px;}
-	#logo img{display:block;}
+	h1 a#logo{display: block; width: 175px; height: 168px; margin: 0 auto; background: url(../img/logo_cccc.gif) 0 0 no-repeat; text-indent: -9999px;}
 	#baselines{margin-top:-70px;}
 		#baselines span{color:#62c3bc;}
 		#baselines #baseline{float:left; width: 41%}
@@ -195,18 +195,6 @@ footer{margin-top:50px; background:url(../img/bg/footer.jpg) repeat-x; height:52
         -webkit-box-shadow:  0px 5px 0px 0px rgba(98, 195, 188, 1);
         box-shadow:  0px 5px 0px 0px rgba(98, 195, 188, 1);}
 #single a.nav_single:hover{top: 235px;
-    -webkit-box-shadow:  0px 0px 0px 0px rgba(224, 65, 66, 1);
-    box-shadow:  0px 0px 0px 0px rgba(224, 65, 66, 1);}
-
-a#download{position: absolute; bottom: 200px; right: 0; display: block; width: 115px; padding: 15px 0 15px 65px; background: #62c3bc url(../img/bg/download.png) 20px 14px no-repeat; color: #fff; text-transform: uppercase; -webkit-border-radius: 10px; border-radius: 10px;
-    -webkit-box-shadow:  0px 4px 0px 0px rgba(224, 65, 66, 1);
-    box-shadow:  0px 4px 0px 0px rgba(224, 65, 66, 1);
-    -webkit-transition: all 0.1s ease-in;
-    -moz-transition: all 0.1s ease-in;
-    -ms-transition: all 0.1s ease-in;
-    -o-transition: all 0.1s ease-in;
-    transition: all 0.1s ease-in;}
-a#download:hover{bottom: 196px;
     -webkit-box-shadow:  0px 0px 0px 0px rgba(224, 65, 66, 1);
     box-shadow:  0px 0px 0px 0px rgba(224, 65, 66, 1);}
 

@@ -14,12 +14,7 @@ error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors', 1);
 
 
-//Mysql connection
-$dbHost = 'rio.local';
-$dbUsername = '2cross1cup';
-$dbPassword = 'pass4bdd';
-$dbName = '2cross1cup';
-$dsn = "mysql:dbname=$dbName;host=$dbHost";
+require_once('../config.php');
 
 $name = (isset($_POST['name']) ? addslashes($_POST['name']) : '');
 $twitter = (isset($_POST['twitter']) ? addslashes($_POST['twitter']) : '');

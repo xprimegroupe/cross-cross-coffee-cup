@@ -74,7 +74,6 @@ if(@$_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php if(isset($next['id'])): ?>
         <a class="nav_single next" href="single.php?id=<?php print($next['id']); ?>"></a>
       <?php endif ?>
-      <a id="download" href="<?php print($creation['img_big']); ?>" target="_blank">Download</a>
     </div>
 
     <div id="bonus" class="clearfix">
