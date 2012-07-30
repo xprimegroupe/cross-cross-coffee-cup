@@ -51,14 +51,14 @@ class CrossCrossCoffeeCupController
         $total_page = ceil($total / 6);
         $current_page = $start / 6 + 1;
 
-        $sql = 'SELECT * FROM cup ORDER BY created_at DESC LIMIT ' . ($start) . ' ,6;';
+        $sql = 'SELECT * FROM cup WHERE id = ?';
 
         $stmt = $app['db']->prepare($sql);
         $stmt->execute();
-        $cups = $stmt->fetchAll();
+        $cup = $stmt->fetchAll();
 
         return $app['twig']->render('cross-cross-coffee-cup/cup.html.twig', array(
-                    'cups' => $cups,
+                    'cup' => $cup,
                     'start' => $start,
                     'total' => $total,
                     'total_page' => $total_page,

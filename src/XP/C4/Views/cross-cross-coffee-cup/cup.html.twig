@@ -3,8 +3,8 @@
 {% block title %}Cup{% endblock %}
 {% block head %}
     {{ parent() }}
-<script src="js/jquery.infieldlabel.min.js" type="text/javascript"></script>
-  <script src="js/rotation.js"></script>
+<script src="/js/jquery.infieldlabel.min.js" type="text/javascript"></script>
+  <script src="/js/rotation.js"></script>
   <script>
     $(function() {
       $('label').inFieldLabels();
@@ -58,7 +58,7 @@
       </div>
 
       <div id="illus">
-        <img src="../img/illus/illus_bonus_<?php print($img_bonus); ?>.jpg" alt="C'est fort de café !">
+        <img src="/img/illus/illus_bonus_<?php print($img_bonus); ?>.jpg" alt="C'est fort de café !">
       </div>
     </div>
 
@@ -68,8 +68,8 @@
       </div>
     </div>
     <div class="push_gallery">
-      <a href="gallery.php">Visit teh gallery</a>
-      <img src="img/the_gallery.png" alt="">
+      <a href="{{ url('c4_gallery') }}">Visit teh gallery</a>
+      <img src="/img/the_gallery.png" alt="">
     </div> 
   </div>
 {% endblock %}

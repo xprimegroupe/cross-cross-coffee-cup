@@ -1,4 +1,4 @@
-/vendor
+/vendor/*
 /nbproject
-/logs
-/cache
+/logs/*
+/cache/*
