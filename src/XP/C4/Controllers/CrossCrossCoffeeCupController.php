@@ -3,6 +3,7 @@
 namespace XP\C4\Controllers;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Response;
 
 class CrossCrossCoffeeCupController
 {
@@ -46,7 +47,12 @@ class CrossCrossCoffeeCupController
         $stmt->bindValue('id', $id, \PDO::PARAM_INT);
         $stmt->execute();
         $cup = $stmt->fetchAll();
-        $cup = !empty($cup) ? $cup[0] : false;
+        if (empty($cup))
+        {
+            $app->abort(404, "Cup $id does not exist.");
+        }
+
+        $cup = $cup[0];
 
         $sql = 'SELECT id FROM cup WHERE created_at < :created_at AND id != :id ORDER BY created_at DESC LIMIT 1';
         $stmt = $app['db']->prepare($sql);
@@ -62,11 +68,22 @@ class CrossCrossCoffeeCupController
         $stmt->execute();
         $next = $stmt->fetchAll();
 
+        $response = new Response();
+
+        $response->setTtl(84600);
+        $response->setCache(array(
+            'last_modified' => new \DateTime(),
+            'max_age' => 84600,
+            's_maxage' => 84600,
+            'private' => false,
+            'public' => true,
+        ));
+
         return $app['twig']->render('cross-cross-coffee-cup/cup.html.twig', array(
                     'cup' => $cup,
                     'prev' => !empty($prev) ? $prev[0] : false,
                     'next' => !empty($next) ? $next[0] : false
-                        )
+                        ), $response
         );
     }
 
@@ -74,7 +91,7 @@ class CrossCrossCoffeeCupController
     {
         if (!$app['request']->get('svg'))
         {
-            throw new Exception('No svg paramater given');
+            $app->abort(404, 'No svg paramater given');
         }
 
         $stmt = $app['db']->prepare("INSERT INTO cup (name, twitter, img_big, created_at) VALUES (:name, :twitter, :img_big, NOW());");
@@ -87,7 +104,7 @@ class CrossCrossCoffeeCupController
         return $app['db']->lastInsertId();
     }
 
-    public function sendMailAction(Application $app)
+    public function sendMailAction(Application $app, $id)
     {
         $message = \Swift_Message::newInstance()
                 ->setSubject('[YourSite] Feedback')
@@ -95,6 +112,8 @@ class CrossCrossCoffeeCupController
                 ->setTo(array('feedback@yoursite.com'))
                 ->setBody($request->get('message'));
         $app['mailer']->send($message);
+
+        return $app->redirect($app['url_generator']->generate('c4_cup', array('id' => $id)));
     }
 
 }

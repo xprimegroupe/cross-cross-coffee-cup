@@ -1,0 +1,10 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}HTTP Error {{ code }}{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <h1>{% if 404 == code %}The requested page could not be found.{% else %}An error occurred{% endif %}</h1>
+    </div>
+{% endblock %}
+
