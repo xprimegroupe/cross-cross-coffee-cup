@@ -24,3 +24,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 
 //-- urlGenerator
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+
+//-- swiftmailer
+$app->register(new Silex\Provider\SwiftmailerServiceProvider());

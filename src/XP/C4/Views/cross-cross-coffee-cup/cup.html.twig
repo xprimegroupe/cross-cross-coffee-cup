@@ -16,18 +16,20 @@
     <div class="wrapper">
     <div id="single">
         <div class="container">
-        <img src="<?php print($creation['img_big']); ?>" alt="visuel" class="visuel">
-        <img src="<?php print($creation['img_big']); ?>" alt="visuel" class="visuel_bis">
-        <img src="../img/illus/cache_big.png" alt="cache" class="cache">
+        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel">
+        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel_bis">
+        <img src="/img/illus/cache_big.png" alt="cache" class="cache">
       </div>
-      <span class="coffee_name"><span><?php if(empty($creation['name'])){print("crosscross");} else {print(htmlspecialchars($creation['name'])); } ?></span></span>
-      <h3 class="creator">Par <?php if(empty($creation['twitter'])){print("Anonymous");} else {print(htmlspecialchars($creation['twitter'])); } ?></h3>
-      <?php if(isset($prev['id'])): ?>
-        <a class="nav_single prev" href="single.php?id=<?php print($prev['id']); ?>"></a>
-      <?php endif ?>
-      <?php if(isset($next['id'])): ?>
-        <a class="nav_single next" href="single.php?id=<?php print($next['id']); ?>"></a>
-      <?php endif ?>
+      <span class="coffee_name"><span>{% if cup.name %}{{ cup.name|e }}{% else %}crosscross{% endif %}</span></span>
+      <h3 class="creator">
+            Par {% if cup.twitter %}{{ cup.twitter|e }}{% else %}Anonymous{% endif %}
+      </h3>
+      {% if prev != false %}
+        <a class="nav_single prev" href="{{ url('c4_cup', {id: prev.id}) }}"></a>
+      {% endif %}
+      {% if next != false %}
+        <a class="nav_single next" href="{{ url('c4_cup', {id: next.id}) }}"></a>
+      {% endif %}
     </div>
 
     <div id="bonus" class="clearfix">
@@ -58,13 +60,13 @@
       </div>
 
       <div id="illus">
-        <img src="/img/illus/illus_bonus_<?php print($img_bonus); ?>.jpg" alt="C'est fort de café !">
+        <img src="/img/illus/illus_bonus_{{ random([1,2,3,4]) }}.jpg" alt="C'est fort de café !">
       </div>
     </div>
 
     <div class="cta_container make_one">
       <div>
-        <a href="/" class="cta">Make one !</a>
+        <a href="{{ url('homepage') }}" class="cta">Make one !</a>
       </div>
     </div>
     <div class="push_gallery">
