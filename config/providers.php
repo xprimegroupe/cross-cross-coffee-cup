@@ -13,13 +13,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 //-- Doctrine
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver' => 'pdo_mysql',
-        'dbname' => '2cross1cup',
-        'host' => 'rio.local',
-        'user' => '2cross1cup',
-        'password' => 'pass4bdd',
-    ),
+    'db.options' => $app['db.options'],
 ));
 
 //-- urlGenerator
