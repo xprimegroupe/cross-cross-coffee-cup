@@ -8,14 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 class CrossCrossCoffeeCupController
 {
 
-    public function galleryAction(Application $app)
+    public function galleryAction(Application $app, $start)
     {
-
         $total = $app['db']->fetchAssoc('SELECT count(*) as total FROM cup;');
         $total = $total['total'];
 
         // Start
-        $start = (int) $app['request']->get('start', 0);
         $next = $start + 6;
         $prev = ($start > 5) ? $start - 6 : 0;
         $total_page = ceil($total / 6);
@@ -104,13 +102,16 @@ class CrossCrossCoffeeCupController
         return $app['db']->lastInsertId();
     }
 
-    public function sendMailAction(Application $app, $id)
+    public function shareAction(Application $app)
     {
+        $id = $app['request']->get('id');
+        $to = $app['request']->get('to');
+        
         $message = \Swift_Message::newInstance()
                 ->setSubject('[YourSite] Feedback')
                 ->setFrom(array('noreply@yoursite.com'))
-                ->setTo(array('feedback@yoursite.com'))
-                ->setBody($request->get('message'));
+                ->setTo(array($to))
+                ->setBody($app['twig']->render('transversal/_share.email.html.twig'));
         $app['mailer']->send($message);
 
         return $app->redirect($app['url_generator']->generate('c4_cup', array('id' => $id)));
