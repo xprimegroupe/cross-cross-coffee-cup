@@ -49,13 +49,14 @@
 
         </div>
 
-        <form method="POST" action="">
-          <div><label for="friend">Type <span>ur friend</span> e-mail here</label><input type="text" name="mail" value="" id="friend" required="required" /></div>
-          <div><label for="you">Type <span>ur name</span></label><input type="text" name="name" value="" id="you" required="required" /></div>
+        <form method="POST" action="{{ url('c4_share') }}">
+          <div><label for="friend">Type <span>ur friend</span> e-mail here</label><input type="text" name="share[mail]" value="" id="friend" required="required" /></div>
+          <div><label for="you">Type <span>ur name</span></label><input type="text" name="share[name]" value="" id="you" required="required" /></div>
+          <input type="hidden" name="share[id]" value="{{ cup.id|e }}" required="required" />
           <span class="submit"><input type="submit" value="Send !"></span>
-          <?php if(isset($_GET['from_email'])): ?>
+          {% if from_email %}
             <span class="email_envoye">L'email a bien été envoyé !</span>
-          <?php endif ?>
+          {% endif %}
         </form>
       </div>
 

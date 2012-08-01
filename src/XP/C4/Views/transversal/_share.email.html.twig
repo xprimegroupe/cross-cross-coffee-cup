@@ -54,26 +54,26 @@
         <table width="600" border="0" cellpadding="0" cellspacing="0" align="center">
           <tr>
             <td>
-              <img src="{{url}}img/email/top.jpg" alt="top" title="" width="600" height="120" style="display: block;" border="none;" />
+              <img src="{{ url('homepage') }}/img/email/top.jpg" alt="top" title="" width="600" height="120" style="display: block;" border="none;" />
             </td>
           </tr>
           <tr>
             <td>
-              <a href="{{url}}" border="none" target="_blank" style="text-decoration:none;"><img src="{{url}}img/email/header.jpg" alt="Vous avez re&ccedil;u une CROSS:CROSS COFFEE CUP" title="" width="600" height="225" style="display: block;" border="none;" /></a>
+              <a href="{{ url('homepage') }}" border="none" target="_blank" style="text-decoration:none;"><img src="{{ url('homepage') }}/img/email/header.jpg" alt="Vous avez re&ccedil;u une CROSS:CROSS COFFEE CUP" title="" width="600" height="225" style="display: block;" border="none;" /></a>
             </td>
           </tr>
           <tr>
             <td>
-              <img src="{{url}}img/email/mug.jpg" alt="mug" title="" width="600" height="450" style="display: block;" border="none;" />
+              <img src="{{ url('homepage') }}/img/email/mug.jpg" alt="mug" title="" width="600" height="450" style="display: block;" border="none;" />
             </td>
           </tr>
           <tr>
             <td>
               <table bgcolor="#f3f3f3" width="600" border="0" cellpadding="0" cellspacing="0" align="center">
                 <tr>
-                  <td><img src="{{url}}img/email/voir_gauche.jpg" alt="" title="" width="151" height="94" style="display: block;" border="none;" /></td>
-                  <td><a href="{{url}}single.php?id={{id}}" border="none" target="_blank" style="text-decoration:none;"><img src="{{url}}img/email/voir_maintenant.jpg" alt="La voir maintenant" title="" width="300" height="94" style="display: block;" border="none;" /></a></td>
-                  <td><img src="{{url}}img/email/voir_droite.jpg" alt="" title="" width="149" height="94" style="display: block;" border="none;" /></td>
+                  <td><img src="{{ url('homepage') }}/img/email/voir_gauche.jpg" alt="" title="" width="151" height="94" style="display: block;" border="none;" /></td>
+                  <td><a href="{{ url('c4_cup', { id: id }) }}" border="none" target="_blank" style="text-decoration:none;"><img src="{{ url('homepage') }}/img/email/voir_maintenant.jpg" alt="La voir maintenant" title="" width="300" height="94" style="display: block;" border="none;" /></a></td>
+                  <td><img src="{{ url('homepage') }}/img/email/voir_droite.jpg" alt="" title="" width="149" height="94" style="display: block;" border="none;" /></td>
                 </tr>
               </table>
             </td>
@@ -86,7 +86,7 @@
               <table bgcolor="#f3f3f3" width="600" border="0" cellpadding="0" cellspacing="0" align="center">
                 <tr>
                   <td valign="top"; style="text-align:left; font-size:35px; font-weight: bold; color:#e04142; font-family:Arial, sans-serif;">CROSS:<span style="font-size:35px; font-weight: bold; color:#62c3bc; font-family:Arial, sans-serif;">CROSS COFFEE CUP, C'EST :<br/>10</span> FORMES RANDOM +<br/> <span style="font-size:35px; font-weight: bold; color:#62c3bc; font-family:Arial, sans-serif;">1</span> GOBELET +<br/> DE LA<br/><span style="font-size:35px; font-weight: bold; color:#62c3bc; font-family:Arial, sans-serif;">CR&Eacute;ATIVIT&Eacute;</span></td>
-                  <td><img src="{{url}}img/email/illus.jpg" alt="Riche en chatf&eacute;&iuml;ne" title="" width="300" height="384" style="display: block;" border="none;" /></td>
+                  <td><img src="{{ url('homepage') }}/img/email/illus.jpg" alt="Riche en chatf&eacute;&iuml;ne" title="" width="300" height="384" style="display: block;" border="none;" /></td>
                 </tr>
               </table>
             </td>
@@ -95,9 +95,9 @@
             <td>
               <table bgcolor="#f3f3f3" width="600" border="0" cellpadding="0" cellspacing="0" align="center">
                 <tr>
-                  <td><img src="{{url}}img/email/make_gauche.jpg" alt="" title="" width="170" height="64" style="display: block;" border="none;" /></td>
-                  <td><a href="{{url}}" border="none" target="_blank" style="text-decoration:none;"><img src="{{url}}img/email/make_one.jpg" alt="Make one !" title="" width="260" height="64" style="display: block;" border="none;" /></a></td>
-                  <td><img src="{{url}}img/email/make_droite.jpg" alt="" title="" width="170" height="64" style="display: block;" border="none;" /></td>
+                  <td><img src="{{ url('homepage') }}/img/email/make_gauche.jpg" alt="" title="" width="170" height="64" style="display: block;" border="none;" /></td>
+                  <td><a href="{{ url('homepage') }}" border="none" target="_blank" style="text-decoration:none;"><img src="{{ url('homepage') }}/img/email/make_one.jpg" alt="Make one !" title="" width="260" height="64" style="display: block;" border="none;" /></a></td>
+                  <td><img src="{{ url('homepage') }}/img/email/make_droite.jpg" alt="" title="" width="170" height="64" style="display: block;" border="none;" /></td>
                 </tr>
               </table>
             </td>
@@ -110,7 +110,7 @@
               <table bgcolor="#f3f3f3" width="600" border="0" cellpadding="0" cellspacing="0" align="center">
                 <tr>
                   <td width="144"></td>
-                  <td><a href="{{url}}gallery.php" border="none" target="_blank" style="text-decoration:none;"><img src="{{url}}img/email/visit_teh_gallery.jpg" alt="Visit teh gallery" title="" width="312" height="40" style="display: block;" border="none;" /></a></td>
+                  <td><a href="{{ url('homepage') }}gallery.php" border="none" target="_blank" style="text-decoration:none;"><img src="{{ url('homepage') }}/img/email/visit_teh_gallery.jpg" alt="Visit teh gallery" title="" width="312" height="40" style="display: block;" border="none;" /></a></td>
                   <td width="144"></td>
                 </tr>
               </table>
@@ -118,7 +118,7 @@
           </tr>
           <tr>
             <td>
-              <img src="{{url}}img/email/collection.jpg" alt="collection" title="" width="600" height="125" style="display: block;" border="none;" />
+              <img src="{{ url('homepage') }}/img/email/collection.jpg" alt="collection" title="" width="600" height="125" style="display: block;" border="none;" />
             </td>
           </tr>
           <tr>
@@ -134,7 +134,7 @@
           </tr>
           <tr>
             <td>
-              <a href="http://www.xprimegroupe.com/" border="none" target="_blank" style="text-decoration:none;"><img src="{{url}}img/email/footer.jpg" alt="X-Prime Group Coffee lovers since 2002" title="" width="600" height="131" style="display: block;" border="none;" /></a>
+              <a href="http://www.xprimegroupe.com/" border="none" target="_blank" style="text-decoration:none;"><img src="{{ url('homepage') }}/img/email/footer.jpg" alt="X-Prime Group Coffee lovers since 2002" title="" width="600" height="131" style="display: block;" border="none;" /></a>
             </td>
           </tr>
 
