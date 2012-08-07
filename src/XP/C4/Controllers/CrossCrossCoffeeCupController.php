@@ -7,7 +7,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CrossCrossCoffeeCupController
 {
-
+    /**
+     * galleryAction()
+     * @param \Silex\Application $app
+     * @param int $start
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function galleryAction(Application $app, $start)
     {
         $total = $app['db']->fetchAssoc('SELECT count(*) as total FROM cup;');
@@ -36,7 +41,13 @@ class CrossCrossCoffeeCupController
                         )
         );
     }
-
+    
+    /**
+     * cupAction()
+     * @param \Silex\Application $app
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function cupAction(Application $app, $id)
     {
         $sql = 'SELECT * FROM cup WHERE id = :id';
@@ -77,15 +88,24 @@ class CrossCrossCoffeeCupController
             'public' => true,
         ));
 
-        return $app['twig']->render('cross-cross-coffee-cup/cup.html.twig', array(
+        $response->setContent($app['twig']->render('cross-cross-coffee-cup/cup.html.twig', array(
                     'cup' => $cup,
                     'prev' => !empty($prev) ? $prev[0] : false,
                     'next' => !empty($next) ? $next[0] : false,
                     'from_email' => $app['request']->get('from_email')
-                        ), $response
-        );
+                        )
+        ));
+		
+		$response->prepare($app['request']);
+		
+		return $response;
     }
-
+    
+    /**
+     * saveAction()
+     * @param \Silex\Application $app
+     * @return int
+     */
     public function saveAction(Application $app)
     {
         if (!$app['request']->get('svg'))
@@ -102,7 +122,12 @@ class CrossCrossCoffeeCupController
 
         return $app['db']->lastInsertId();
     }
-
+    
+    /**
+     * shareAction()
+     * @param \Silex\Application $app
+     * @return type
+     */
     public function shareAction(Application $app)
     {
         $share = $app['request']->get('share');
@@ -111,7 +136,7 @@ class CrossCrossCoffeeCupController
                 ->setSubject($share['name']." vous a envoyé une CROSS:CROSS COFFEE CUP")
                 ->setFrom(array('contact@crosscrosscoffeecup.com'))
                 ->setTo(array($share['mail'] => $share['name']))
-                ->setBody($app['twig']->render('transversal/_share.email.html.twig', array('id' => $share['id'])),'text/html');
+                ->setBody($app['twig']->render('default/_share.email.html.twig', array('id' => $share['id'])),'text/html');
         $send = $app['mailer']->send($message);
 
         return $app->redirect($app['url_generator']->generate('c4_cup', array(

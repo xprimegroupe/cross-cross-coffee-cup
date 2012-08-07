@@ -1,13 +1,16 @@
 <?php
 
-$app->mount('/c4/', new XP\C4\Controllers\Providers\CrossCrossCoffeeCupControllerProvider());
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$app->mount('/', new XP\C4\Controllers\Providers\TranversalControllerProvider());
+use Silex\Application;
 
+$app = new Application();
+
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/config/providers.php';
+require_once __DIR__ . '/config/routing.php';
 
 //-- error
-use Symfony\Component\HttpFoundation\Response;
-use Silex\Application;
 
 $app->error(function (\Exception $e, $code) use ($app)
             {
@@ -17,3 +20,5 @@ $app->error(function (\Exception $e, $code) use ($app)
             }
             return $app['twig']->render('transversal/error.html.twig', array('code' => $code));
             });
+
+return $app;

@@ -1,4 +1,4 @@
 <?php
-$app = require_once '../bootstrap.php';
 
-$app['http_cache']->run();
+$app = require_once __DIR__.'/../app/app.php';
+$app->run();

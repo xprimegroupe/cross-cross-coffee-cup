@@ -1,0 +1,21 @@
+Install Vendor
+
+$ php composer.phar install
+
+Install BDD
+
+$ mysql -h localhost -u root -p -u 2cross1cup 2cross1cup -e "source data/sql/schema.sql"
+
+Config Environment(in apache)
+
+<IfModule mod_env>
+    #environment settings
+    SetEnv debug        0           #0: disabled | 1: enabled
+    SetEnv environment  dev         #replace dev by the name of your instance if needed
+
+    #mysql settings
+    SetEnv db_name      2cross1cup  #the database name
+    SetEnv db_host      localhost   #the database host
+    SetEnv db_user      2cross1cup  #the database user
+    SetEnv db_password  pass4bdd    #the database password
+</IfModule>
