@@ -2,7 +2,7 @@ var les_objets_a_placer = new Array();
 
 (function() {
     //-- 
-    var max_forme_num = 36;
+    var max_forme_num = 45;
     var max_num_formes = 10;
     
     var include_js = function (files) {

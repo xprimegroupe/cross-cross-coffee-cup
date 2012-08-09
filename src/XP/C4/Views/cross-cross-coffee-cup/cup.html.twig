@@ -6,11 +6,11 @@
 <meta property="og:title" content="Cross Cross Coffee Cup - Factory" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ url('c4_cup', {id: cup.id}) }}" />
-<meta property="og:image" content="/images/rock.jpg" />
+<meta property="og:image" content="{{ cup.img_big|e }}" />
 
 
 <script src="/js/jquery.infieldlabel.min.js" type="text/javascript"></script>
-<script src="/js/rotation.js"></script>
+<script src="/js/rotation.js" type="text/javascript"></script>
 <script type="text/javascript">
   $(function() {
     $('label').inFieldLabels();
@@ -67,7 +67,7 @@
                 </div>
 
                 <div id="illus">
-                    <img src="/img/illus/illus_bonus_{{ random([1,2,3,4]) }}.jpg" alt="C'est fort de café !">
+                    <img src="/img/illus/illus_bonus_{{ random([1,2,3,4,5,6]) }}.jpg" alt="C'est fort de café !">
                 </div>
             </div>
 
