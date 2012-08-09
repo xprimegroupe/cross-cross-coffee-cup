@@ -146,7 +146,7 @@ $(document).ready(function() {
         "font-weight": "bold", 
         "font-style": "italic", 
         "fill" : "rgb("+odd_color+")"
-        });
+    });
     var twitter_t_width = twitter_t.getBBox().width
     var picto_twitter = paper.path('M24.936,5.225c-0.867,0.383-1.805,0.646-2.785,0.762c1.002-0.6,1.771-1.551,2.135-2.685 c-0.938,0.558-1.977,0.962-3.087,1.178c-0.884-0.941-2.14-1.533-3.538-1.533c-2.682,0-4.854,2.173-4.854,4.853 c0,0.384,0.04,0.755,0.123,1.108C8.896,8.705,5.319,6.771,2.925,3.835C2.506,4.553,2.274,5.387,2.274,6.276 c0,1.682,0.855,3.169,2.157,4.042c-0.8-0.03-1.544-0.245-2.201-0.606c0,0.015,0,0.04,0,0.059c0,2.353,1.676,4.311,3.896,4.76 c-0.409,0.109-0.839,0.168-1.28,0.168c-0.313,0-0.618-0.029-0.913-0.086c0.615,1.928,2.408,3.332,4.532,3.367 c-1.659,1.306-3.753,2.078-6.025,2.078c-0.394,0-0.779-0.02-1.158-0.064c2.147,1.379,4.697,2.182,7.438,2.182 c8.93,0,13.809-7.396,13.809-13.813c0-0.21-0.003-0.42-0.012-0.629C23.466,7.051,24.289,6.198,24.936,5.225z').attr({
         fill:"rgb("+even_color+")", 
@@ -299,14 +299,20 @@ $(document).ready(function() {
 
         $('#vector_render').val(svg);
 
-        $.post("/c4/cup", {
-            twitter: twitter, 
-            name: name, 
-            svg: img
-        }, function(id) {
-            document.location.href = "/c4/cup/" + id;
-        } 
-        );
+        var request = $.ajax({
+            "type": "POST",
+            "url": "/c4/cup",
+            "data": {
+                twitter: twitter, 
+                name: name, 
+                svg: img
+            } ,
+            "dataType": "json"
+        });
+        
+        request.done(function(response) {
+            document.location.href = "/c4/cup/" + response.data.id;
+        });
     });
 
 

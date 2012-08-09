@@ -6,7 +6,7 @@
 <meta property="og:title" content="Cross Cross Coffee Cup - Factory" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ url('c4_cup', {id: cup.id}) }}" />
-<meta property="og:image" content="{{ cup.img_big|e }}" />
+<meta property="og:image" content="{{ cup.imgBig|e }}" />
 
 
 <script src="/js/jquery.infieldlabel.min.js" type="text/javascript"></script>
@@ -22,8 +22,8 @@
     <div class="wrapper">
         <div id="single">
             <div class="container">
-                <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel">
-                <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel_bis">
+                <img src="{{ cup.imgBig|e }}" alt="visuel" class="visuel">
+                <img src="{{ cup.imgBig|e }}" alt="visuel" class="visuel_bis">
                 <img src="/img/illus/cache_big.png" alt="cache" class="cache">
             </div>
             <span class="coffee_name"><span>{% if cup.name %}{{ cup.name|e }}{% else %}crosscross{% endif %}</span></span>

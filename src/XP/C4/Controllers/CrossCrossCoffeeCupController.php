@@ -4,9 +4,11 @@ namespace XP\C4\Controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
+use XP\C4\Entity\Cup;
 
 class CrossCrossCoffeeCupController
 {
+
     /**
      * galleryAction()
      * @param \Silex\Application $app
@@ -15,7 +17,7 @@ class CrossCrossCoffeeCupController
      */
     public function galleryAction(Application $app, $start)
     {
-        $total = $app['db']->fetchAssoc('SELECT count(*) as total FROM cup;');
+        $total = $app['doctrine.dbal.connection']->fetchAssoc('SELECT count(*) as total FROM cup;');
         $total = $total['total'];
 
         // Start
@@ -26,7 +28,7 @@ class CrossCrossCoffeeCupController
 
         $sql = 'SELECT * FROM cup ORDER BY created_at DESC LIMIT ' . ($start) . ' ,6;';
 
-        $stmt = $app['db']->prepare($sql);
+        $stmt = $app['doctrine.dbal.connection']->prepare($sql);
         $stmt->execute();
         $cups = $stmt->fetchAll();
 
@@ -41,7 +43,7 @@ class CrossCrossCoffeeCupController
                         )
         );
     }
-    
+
     /**
      * cupAction()
      * @param \Silex\Application $app
@@ -50,32 +52,17 @@ class CrossCrossCoffeeCupController
      */
     public function cupAction(Application $app, $id)
     {
-        $sql = 'SELECT * FROM cup WHERE id = :id';
 
-        $stmt = $app['db']->prepare($sql);
-        $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
-        $cup = $stmt->fetchAll();
-        if (empty($cup))
+        $cup = $app['doctrine.orm.em']->getRepository('XP\C4\Entity\Cup')->findOneBy(array('id' => $id));
+        if (!$cup)
         {
             $app->abort(404, "Cup $id does not exist.");
         }
+        //-- prev
+        $prev = $app['doctrine.orm.em']->getRepository('XP\C4\Entity\Cup')->getPreviousCups($cup);
 
-        $cup = $cup[0];
-
-        $sql = 'SELECT id FROM cup WHERE created_at < :created_at AND id != :id ORDER BY created_at DESC LIMIT 1';
-        $stmt = $app['db']->prepare($sql);
-        $stmt->bindValue('created_at', $cup['created_at']);
-        $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
-        $prev = $stmt->fetchAll();
-
-        $sql = 'SELECT id FROM cup WHERE created_at > :created_at AND id != :id ORDER BY created_at ASC LIMIT 1;';
-        $stmt = $app['db']->prepare($sql);
-        $stmt->bindValue('created_at', $cup['created_at']);
-        $stmt->bindValue('id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
-        $next = $stmt->fetchAll();
+        //-- next
+        $next = $app['doctrine.orm.em']->getRepository('XP\C4\Entity\Cup')->getNextCups($cup);
 
         $response = new Response();
 
@@ -94,17 +81,17 @@ class CrossCrossCoffeeCupController
                     'next' => !empty($next) ? $next[0] : false,
                     'from_email' => $app['request']->get('from_email')
                         )
-        ));
-		
-		$response->prepare($app['request']);
-		
-		return $response;
+                ));
+
+        $response->prepare($app['request']);
+
+        return $response;
     }
-    
+
     /**
      * saveAction()
      * @param \Silex\Application $app
-     * @return int
+     * @return json
      */
     public function saveAction(Application $app)
     {
@@ -113,16 +100,22 @@ class CrossCrossCoffeeCupController
             $app->abort(404, 'No svg paramater given');
         }
 
-        $stmt = $app['db']->prepare("INSERT INTO cup (name, twitter, img_big, created_at) VALUES (:name, :twitter, :img_big, NOW());");
-        $stmt->bindValue('name', $app['request']->get('name'), \PDO::PARAM_STR);
-        $stmt->bindValue('twitter', $app['request']->get('twitter'), \PDO::PARAM_STR);
-        $stmt->bindValue('img_big', $app['request']->get('svg'), \PDO::PARAM_STR);
+        $cup = new Cup();
+        $cup->setName($app['request']->get('name'))
+                ->setTwitter($app['request']->get('twitter'))
+                ->setImgBig($app['request']->get('svg'));
 
-        $stmt->execute();
+        $app['doctrine.orm.em']->persist($cup);
+        $app['doctrine.orm.em']->flush();
 
-        return $app['db']->lastInsertId();
+        return $app->json(array(
+                    'data' => array(
+                        'id' => $cup->getId()
+                    )
+                        )
+        );
     }
-    
+
     /**
      * shareAction()
      * @param \Silex\Application $app
@@ -131,18 +124,18 @@ class CrossCrossCoffeeCupController
     public function shareAction(Application $app)
     {
         $share = $app['request']->get('share');
-        
+
         $message = \Swift_Message::newInstance()
-                ->setSubject($share['name']." vous a envoyé une CROSS:CROSS COFFEE CUP")
+                ->setSubject($share['name'] . " vous a envoyé une CROSS:CROSS COFFEE CUP")
                 ->setFrom(array('contact@crosscrosscoffeecup.com'))
                 ->setTo(array($share['mail'] => $share['name']))
-                ->setBody($app['twig']->render('default/_share.email.html.twig', array('id' => $share['id'])),'text/html');
+                ->setBody($app['twig']->render('default/_share.email.html.twig', array('id' => $share['id'])), 'text/html');
         $send = $app['mailer']->send($message);
 
         return $app->redirect($app['url_generator']->generate('c4_cup', array(
-            'id' => $share['id'],
-            'from_email' => $send
-            )));
+                            'id' => $share['id'],
+                            'from_email' => $send
+                        )));
     }
 
 }

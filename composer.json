@@ -1,7 +1,6 @@
 {
     "require": {
         "silex/silex": "1.0.*",
-        "doctrine/dbal": "2.2.*",
         "monolog/monolog": ">=1.0.0",
         "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
         "twig/twig": ">=1.8,<2.0-dev",
@@ -9,7 +8,9 @@
         "symfony/form": "2.1.*",
         "symfony/config": "2.1.*",
         "symfony/translation": "2.1.*",
-        "symfony/validator": "2.1.*"
+        "symfony/validator": "2.1.*",
+        "docteurklein/silex-doctrine-service-providers": "*",
+        "gedmo/doctrine-extensions": "dev-master"
     },
     "autoload": {
         "psr-0": {
