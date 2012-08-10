@@ -310,8 +310,8 @@ $(document).ready(function() {
             "dataType": "json"
         });
         
-        request.done(function(response) {
-            document.location.href = "/c4/cup/" + response.data.id;
+        request.done(function(id) {
+            document.location.href = "/c4/cup/" + id;
         });
     });
 

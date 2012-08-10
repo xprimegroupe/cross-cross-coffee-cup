@@ -13,10 +13,10 @@ class CrossCrossCoffeeCupControllerProvider implements ControllerProviderInterfa
     {
         // creates a new controller based on the default route
         $controllers = $app['controllers_factory'];
-        $controllers->get('/gallery/{start}', 'XP\C4\Controllers\CrossCrossCoffeeCupController::galleryAction')
+        $controllers->get('/gallery/{page}', 'XP\C4\Controllers\CrossCrossCoffeeCupController::galleryAction')
                 ->bind('c4_gallery')
-                ->assert('start', '\d+')
-                ->value('start', 0);
+                ->assert('page', '\d+')
+                ->value('page', 1);
         
         $controllers->get('/cup/{id}', 'XP\C4\Controllers\CrossCrossCoffeeCupController::cupAction')
                 ->bind('c4_cup')

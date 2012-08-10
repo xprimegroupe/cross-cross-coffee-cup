@@ -3,6 +3,7 @@
 namespace XP\C4\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class CupRepository extends EntityRepository
 {
@@ -27,8 +28,32 @@ class CupRepository extends EntityRepository
         $query->setParameter('created_at', $current_cup->getCreatedAt()->format('Y-m-d H:i:s'));
         $query->setParameter('id', $current_cup->getId());
         $query->setMaxResults($limit);
-        
+
         return $query->getResult();
+    }
+
+    public function getTotal()
+    {
+        return $this->createQueryBuilder('a')->select('COUNT(a)')->getQuery()->getSingleScalarResult();
+    }
+
+    public function getPager($page = 1, $max = 10, $fetchJoinCollection = true, $query = null)
+    {
+
+        if ($query === null)
+        {
+            $query = $this->createQueryBuilder('a');
+        }
+        
+        $query->orderBy($query->getRootAlias().'.created_at', 'DESC');
+
+        $offset = ($page - 1) * $max;
+
+
+        $query->setFirstResult($offset);
+        $query->setMaxResults($max);
+
+        return new Paginator($query, $fetchJoinCollection);
     }
 
 }

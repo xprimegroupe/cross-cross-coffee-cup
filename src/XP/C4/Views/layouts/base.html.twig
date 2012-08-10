@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!-- Consider specifying the language of your content by adding the `lang` attribute to <html> -->
+{# paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ #}
+{# Consider specifying the language of your content by adding the `lang` attribute to <html> #}
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9"> <![endif]-->
@@ -9,59 +9,60 @@
         {% block head %}
             <meta charset="utf-8">
 
-            <!-- Use the .htaccess and remove these lines to avoid edge case issues.
-                 More info: h5bp.com/i/378 -->
+            {# Use the .htaccess and remove these lines to avoid edge case issues.
+                 More info: h5bp.com/i/378 #}
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-            <title>CCCC - {% block title %}{% endblock %}</title>
+            <title>CCCC - {% block title %}Cross Cross Coffe Cup{% endblock %}</title>
             <meta name="description" content="">
 
-            <!-- Mobile viewport optimized: h5bp.com/viewport -->
+            {# Mobile viewport optimized: h5bp.com/viewport #}
             <meta name="viewport" content="width=device-width">
 
-            <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+            {# Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons #}
 
             <link rel="stylesheet" href="/css/main.css">
             <link rel="stylesheet" href="/css/style.css">
 
-            <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+            {# More ideas for your <head> here: h5bp.com/d/head-Tips #}
 
-            <!-- All JavaScript at the bottom, except this Modernizr build.
+            {# All JavaScript at the bottom, except this Modernizr build.
                  Modernizr enables HTML5 elements & feature detects for optimal performance.
-                 Create your own custom Modernizr build: www.modernizr.com/download/ -->
-            <script src="/js/vendor/modernizr-2.5.3.min.js"></script>
+                 Create your own custom Modernizr build: www.modernizr.com/download/ #}
+            <script src="/js/vendor/modernizr-2.5.3.min.js" type="text/javascript"></script>
 
-            <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-                 chromium.org/developers/how-tos/chrome-frame-getting-started -->
+            {# Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+                 chromium.org/developers/how-tos/chrome-frame-getting-started #}
             <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-            <!-- Add your site or application content here -->
+            {# Add your site or application content here #}
 
+            {# JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom #}
 
-            <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
+            {# Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline #}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+            <script>window.jQuery || document.write(unescape('%3Cscript src="/js/vendor/jquery-1.7.2.min.js" charset="utf-8" type="text/javascript" %3E%3C/script%3E'));</script>
 
-            <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+            {# scripts concatenated and minified via build script #}
+            <script src="/js/plugins.js" type="text/javascript"></script>
+            {# end scripts #}
 
-            <!-- scripts concatenated and minified via build script -->
-            <script src="/js/plugins.js"></script>
-            <script src="/js/main.js"></script>
-            <!-- end scripts -->
-
-            <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-                 mathiasbynens.be/notes/async-analytics-snippet -->
+            {# Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+                 mathiasbynens.be/notes/async-analytics-snippet #}
+            {% if app.google_analytics %}
             <script>
-                var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+                var _gaq=[['_setAccount', '{{ app.google_analytics }}'],['_trackPageview']];
                 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
                 g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
                 s.parentNode.insertBefore(g,s)}(document,'script'));
                 </script>
+            {% endif %}
             {% endblock %}
             </head>
 
             <body>
                 <header>
+                    {% block header %}
                     <h1><a href="/" id="logo">CROSS:CROSS COFFEE CUP</a></h1>
                     <div id="baselines" class="clearfix">
                         <div id="baseline">
@@ -71,8 +72,9 @@
                             follow us : <a href="https://twitter.com/#!/search/?q=%23cccc&src=hash" target="_blank">#cccc</a> + <a href="https://twitter.com/XPRIME" target="_blank">@xprimegroupe</a>
                         </div>
                     </div>
+                    {% endblock %}
                 </header>
-                <a id="github_banner" target="_BLANK" href="https://github.com/xprimegroupe/cross-cross-coffee-cup"><img src="/img/github_banner.png" alt="FORK ME ON GITHUB !"></a>
+                <a id="github_banner" target="_BLANK" href="https://github.com/xprimegroupe"><img src="/img/github_banner.png" alt="FORK ME ON GITHUB !"></a>
             {% block content %}{% endblock %}
                     <footer>
                         {% block footer %}
@@ -94,7 +96,7 @@
                                     <div class="content">
                                         <h2>OPEN SOURCE</h2>
                                         <p>CROSS:CROSS COFFEE CUP est un projet OpenSource : nous mettons à disposition le code JS reposant principalement sur RaphaelJS. N'hésitez pas à y contribuer ou suggérer vos améliorations !</p>
-                                        <a target="_BLANK" href="https://github.com/xprimegroupe/cross-cross-coffee-cup">Show me more on Github NOW !</a>
+                                        <a target="_blank" href="https://github.com/xprimegroupe/cross-cross-coffee-cup">Show me more on Github NOW !</a>
                                     </div>
                                 </aside>
                             </div>

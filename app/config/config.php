@@ -10,6 +10,12 @@ if ($app['debug'])
 $app['charset'] = 'UTF-8';
 $app['locale'] = 'en';
 
+//-- google analytics U-XXXXXXX
+$app['google_analytics'] = getenv('google_analytics') != null ? getenv('google_analytics') : false;
+
+//-- cup list max per page
+$app['cup.list_max_per_page'] = 6;
+
 //-- providers parameters 
 //-- Doctrine
 $app['doctrine.dbal.connection_options'] = array(

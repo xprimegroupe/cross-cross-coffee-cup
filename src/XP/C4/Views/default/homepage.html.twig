@@ -15,10 +15,10 @@
         <span id="enter_name"><label for="name">name</label><input type="text" name="name" value="" id="name" /></span>
     </div>
 
-    <!-- LET'S GO RAPHAEL ! -->        
+    {# LET'S GO RAPHAEL ! #}        
     <div id="raphael_container">
         <img style="display:none" id="sticky" src="/img/the_sticky.png" alt="">
-        <div id="raphael"></div><!-- DIS HAS TO BE EMPTY : CANVG DOESN'T LIKE CONTENT : PARSE ERROR FUCK YEAH-->
+        <div id="raphael"></div>{# DIS HAS TO BE EMPTY : CANVG DOESN'T LIKE CONTENT : PARSE ERROR FUCK YEAH #}
         <div id="edit">
             <a id="colors" href="#_">Invert colors</a>
             <a id="tools" href="#_">Show/Hide tools</a>
@@ -33,7 +33,7 @@
     </div>
     <div class="push_gallery">
         <a href="{{  url('c4_gallery') }}">Visit teh gallery</a>
-        <img src="/img/the_gallery.png" alt="">
+        <img src="/img/the_gallery.png" alt="The Gallery">
     </div>           
 </div>
 {% endblock %}
@@ -41,20 +41,20 @@
 
 {% block footer %}
     {{ parent() }}
-<!-- ONLY FOR CREATING A MUG : INDEX.HTML -->
-<!-- RAPHAEL -->
+{# ONLY FOR CREATING A MUG : INDEX.HTML #}
+{# RAPHAEL #}
 <script type="text/javascript" src="/js/creation/raphael-min.js" charset="utf-8" ></script>
 <script type="text/javascript" src="/js/creation/raphael.free_transform.js" charset="utf-8" ></script>
 
-<!--  -->
+{#  #}
 <script type="text/javascript" src="/js/creation/raphael.serialize.js" charset="utf-8" ></script>
 
-<!--CANVG-->
+{# CANVG #}
 <script type="text/javascript" src="/js/creation/rgbcolor.js"></script> 
 <script type="text/javascript" src="/js/creation/canvg.js"></script>
-<!-- -->
+{# #}
 
-<!--canvas2image-->
+{# canvas2image #}
 <script type="text/javascript" src="/js/creation/canvas2image.js"></script> 
 <script type="text/javascript" src="/js/creation/base64.js" charset="utf-8"></script>
 

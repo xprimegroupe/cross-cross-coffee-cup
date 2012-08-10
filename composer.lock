@@ -24,8 +24,14 @@
         {
             "package": "doctrine/mongodb-odm",
             "version": "dev-master",
-            "source-reference": "612229ac4fe65337352d0b4ba2dbdbd662d195de",
-            "commit-date": "1344437604"
+            "alias-pretty-version": "1.0.x-dev",
+            "alias-version": "1.0.9999999.9999999-dev"
+        },
+        {
+            "package": "doctrine/mongodb-odm",
+            "version": "dev-master",
+            "source-reference": "6c1eb69404866721c6e55e6ecb309fa8b989be17",
+            "commit-date": "1344539146"
         },
         {
             "package": "doctrine/orm",
@@ -36,20 +42,14 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "alias-pretty-version": "2.3.x-dev",
-            "alias-version": "2.3.9999999.9999999-dev"
-        },
-        {
-            "package": "gedmo/doctrine-extensions",
-            "version": "dev-master",
             "source-reference": "9bb455ba52d223a47323f4c5832635ccc328f630",
             "commit-date": "1344437232"
         },
         {
             "package": "monolog/monolog",
             "version": "dev-master",
-            "source-reference": "59fb9f41be22b246f5e5d3bd8a012ed77f44a7d0",
-            "commit-date": "1342167011"
+            "source-reference": "4ab32e33634c7fa346d3a160a6fd7c20e6d71b37",
+            "commit-date": "1344554236"
         },
         {
             "package": "pimple/pimple",

@@ -18,8 +18,8 @@
         {% for cup in cups %}
                 <li>
                     <div class="container">
-                        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel">
-                        <img src="{{ cup.img_big|e }}" alt="visuel" class="visuel_bis">
+                        <img src="{{ cup.imgBig|e }}" alt="visuel" class="visuel">
+                        <img src="{{ cup.imgBig|e }}" alt="visuel" class="visuel_bis">
                         <img src="/img/illus/cache_small.png" alt="cache" class="cache">
                     </div>
                     <a href="{{ url('c4_cup', {id: cup.id}) }}" class="coffee_name">
@@ -42,23 +42,49 @@
 
             <div id="pager">
                 <div>
-                    {% if start == 0 %}
+                    {% if page == 1 %}
                         <span>Page précédente</span>
                     {% else %}
-                        <a href="{{ url('c4_gallery', {start: prev}) }}">Page précédente</a>
+                        <a href="{{ url('c4_gallery', {page: prev}) }}">Page précédente</a>
                     {% endif %}
-                    </div>
-
-                    <p>Page {{ current_page|e }} sur {{ total_page|e }}</p>
-
-                    <div>
-                    {% if start+6 >= total %}
-                            <span>Page suivante</span>
-                    {% else %}
-                            <a href="{{ url('c4_gallery', {start: next}) }}">Page suivante</a>
-                    {% endif %}
-                        </div>
-                    </div>
                 </div>
+                    
+                    <p>
+                    {% set prev_2 = prev-2>0?prev-2:1 %}
+                    {% set next_2 = next+2<last_page?next+2:last_page %}
+                            
+                    {% if page > 1 %}
+                        {% if prev_2 > 1 %}
+                        <a title="première page" href="{{ url('c4_gallery') }}">1</a> ...
+                        {% endif %}
+                        {% for i in prev_2..prev %}
+                        <a title="page {{ i }}" href="{{ url('c4_gallery', {page: i }) }}">{{ i }}</a>
+                        {% endfor %}
+                    {% endif %}
+                        
+                        <strong>{{ page }}</strong>
+                    {% if page < last_page %}
+                        
+                        {% for i in next..next_2 %}
+                        <a title="page {{ i }}" href="{{ url('c4_gallery', {page: i }) }}">{{ i }}</a>
+                        {% endfor %}
+                        {% if next_2 < last_page %}
+                        ... <a title="dernière page" href="{{ url('c4_gallery', {page: last_page}) }}">{{ last_page }}</a>
+                        {% endif %}
+                    {% endif %}
+                    </p>              
+
+                    {# Page {{ page|e }} sur {{ last_page|e }} #}
+                
+                <div>
+                    {% if page >= last_page %}
+                    <span>Page suivante</span>
+                    {% else %}
+                    <a href="{{ url('c4_gallery', {page: next}) }}">Page suivante</a>
+                    
+                    {% endif %}
+                 </div>
+               </div>
+            </div>
 {% endblock %}
 
