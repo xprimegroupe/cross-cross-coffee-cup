@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
 
 use Silex\Application;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -8,12 +8,19 @@ use Gedmo\Timestampable\TimestampableListener;
 
 $app = new Application();
 
+//-- config
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/config/providers.php';
 require_once __DIR__ . '/config/routing.php';
-
-$app->before(function() use ($app)
+            
+//-- init application
+$app->before(function() use ($app, $loader)
             {
+            AnnotationRegistry::registerLoader(function($class) use ($loader)
+                        {
+                        $loader->loadClass($class);
+                        return class_exists($class, false);
+                        });
             AnnotationRegistry::registerFile(__DIR__ . '/../vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
 
             // globally used cache driver, in production use APC or memcached

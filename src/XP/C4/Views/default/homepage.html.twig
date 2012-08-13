@@ -15,7 +15,7 @@
         <span id="enter_name"><label for="name">name</label><input type="text" name="name" value="" id="name" /></span>
     </div>
 
-    {# LET'S GO RAPHAEL ! #}        
+    {# LET'S GO RAPHAEL ! #}
     <div id="raphael_container">
         <img style="display:none" id="sticky" src="/img/the_sticky.png" alt="">
         <div id="raphael"></div>{# DIS HAS TO BE EMPTY : CANVG DOESN'T LIKE CONTENT : PARSE ERROR FUCK YEAH #}
@@ -59,6 +59,9 @@
 <script type="text/javascript" src="/js/creation/base64.js" charset="utf-8"></script>
 
 <script type="text/javascript" src="/js/creation/formes.js" charset="utf-8"></script>
+{% if app.env != 'prod' %}
+<script type="text/javascript" src="/js/creation/formes_test.js" charset="utf-8"></script>
+{% endif %}
 <script type="text/javascript" src="/js/creation/init.js" charset="utf-8"></script>
 
 <div id="process">

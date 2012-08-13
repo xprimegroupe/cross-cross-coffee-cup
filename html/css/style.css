@@ -84,7 +84,7 @@ header{text-align: center; background: url(/img/bg/header.png) 50% 20px no-repea
     .push_gallery a:hover{color:#62c3bc; border-color:#62c3bc}
 .push_gallery img{margin-top:30px;}
 
-footer{margin-top:50px; background:url(/img/bg/footer.jpg) repeat-x; height:527px; overflow: hidden; color:#fff; padding-top:60px; text-shadow:1px 1px 1px #4d968e;}
+footer{margin-top:50px; background:url(/img/bg/footer.jpg) repeat-x; overflow: hidden; color:#fff; padding-top:60px; text-shadow:1px 1px 1px #4d968e;}
     footer aside{margin-bottom:20px;}
         footer aside img.illus{float:left; margin-right:30px; border-radius:150px; padding:10px; background:url(/img/bg/circle.png) 50% 50% no-repeat;}
         footer aside .content{float:left; width:820px; }
@@ -103,7 +103,7 @@ footer{margin-top:50px; background:url(/img/bg/footer.jpg) repeat-x; height:527p
     #social_btn a#gplus_btn{background-image:url(/img/btn/gplus_logo.svg)}
     footer aside a, footer aside a:visited{border-bottom:1px dotted #fff; padding-bottom:10px; color:#ffffff;}
         footer aside a:hover{border-color:#e04142;}
-    footer #xp_branding{margin:0 auto; display: block;}
+    footer a#xp_branding{margin:0 auto; display: block; width: 939px; height: 165px; text-indent: -9999px; background: url(/img/xp_branding.png) 0 0 no-repeat;}
 
 /*PAGE CREATION*/
 .wrapper.mug{background:url(/img/bg/the_mug.jpg) 50% 30px no-repeat;}
