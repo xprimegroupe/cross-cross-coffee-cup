@@ -10,7 +10,10 @@
         "symfony/translation": "2.1.*",
         "symfony/validator": "2.1.*",
         "docteurklein/silex-doctrine-service-providers": "*",
-        "gedmo/doctrine-extensions": "dev-master"
+        "gedmo/doctrine-extensions": "dev-master",
+		"symfony/browser-kit": "2.1.*",
+        "symfony/css-selector": "2.1.*",
+        "symfony/dom-crawler": "2.1.*"
     },
     "autoload": {
         "psr-0": {

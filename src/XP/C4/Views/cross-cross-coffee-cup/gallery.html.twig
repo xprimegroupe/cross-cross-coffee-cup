@@ -23,7 +23,7 @@
                         <img src="/img/illus/cache_small.png" alt="cache" class="cache">
                     </div>
                     <a href="{{ url('c4_cup', {id: cup.id}) }}" class="coffee_name">
-                        <span>{% if cup.name %}{{ cup.name|e }}{% else %}crosscross{% endif %}</span>
+                        <span>{% if cup.name %}{{ cup.name|e }}{% else %}cross:cross{% endif %}</span>
                     </a>
                     <h3 class="creator">
                         Par {% if cup.twitter %}{{ cup.twitter|e }}{% else %}Anonymous{% endif %}

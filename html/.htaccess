@@ -1,3 +1,17 @@
+#if possible deplace in apache vhost
+<IfModule mod_env.c>
+    #environment settings
+    SetEnv debug        1
+    SetEnv environment  dev
+
+    #mysql settings
+    SetEnv db_name      2cross1cup
+    SetEnv db_host      rio.local
+    SetEnv db_user      2cross1cup
+    SetEnv db_password  pass4bdd
+</IfModule>
+#end deplace
+
 <IfModule mod_rewrite.c>
     Options -MultiViews
     RewriteEngine On

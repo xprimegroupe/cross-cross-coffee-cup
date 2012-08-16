@@ -1,6 +1,6 @@
 <?php
 
-$loader = require_once __DIR__ . '/../vendor/autoload.php';
+$loader = require __DIR__ . '/../vendor/autoload.php';
 
 use Silex\Application;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -9,9 +9,9 @@ use Gedmo\Timestampable\TimestampableListener;
 $app = new Application();
 
 //-- config
-require_once __DIR__ . '/config/config.php';
-require_once __DIR__ . '/config/providers.php';
-require_once __DIR__ . '/config/routing.php';
+require __DIR__ . '/config/config.php';
+require __DIR__ . '/config/providers.php';
+require __DIR__ . '/config/routing.php';
             
 //-- init application
 $app->before(function() use ($app, $loader)

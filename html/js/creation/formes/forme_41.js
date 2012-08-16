@@ -3,6 +3,7 @@
 Merci à Seb qui a poussé le projet,
 Merci à Baptiste pour ses conseils avisés,
 Merci à Benjamin pour ses encouragements,
+Merci à Thomas qui s'est beaucoup impliqué dans le projet, gg,
 Merci à Laurent C. pour ses idées et son supports,
 Merci à Laurent SF. pour l'envoi dans la base,
 Merci à Raphaël pour la même chose mais il est parti on s'en fout,
