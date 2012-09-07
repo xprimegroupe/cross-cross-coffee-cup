@@ -24,6 +24,7 @@ $app['doctrine.dbal.connection_options'] = array(
     'host' => getenv('db_host') != null ? getenv('db_host') : 'rio.local',
     'user' => getenv('db_user') != null ? getenv('db_user') : '2cross1cup',
     'password' => getenv('db_password') != null ? getenv('db_password') : 'pass4bdd',
+	'charset' => 'utf8'
 );
 
 $app['doctrine.orm'] = true;

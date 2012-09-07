@@ -1,7 +1,7 @@
 #if possible deplace in apache vhost
 <IfModule mod_env.c>
     #environment settings
-    SetEnv debug        1
+    SetEnv debug        0
     SetEnv environment  dev
 
     #mysql settings

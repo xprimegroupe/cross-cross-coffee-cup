@@ -92,13 +92,17 @@ class CrossCrossCoffeeCupController
     public function shareAction(Application $app)
     {
         $share = $app['request']->get('share');
-        
-        $message = \Swift_Message::newInstance()
-                ->setSubject($share['name']." vous a envoyé une CROSS:CROSS COFFEE CUP")
-                ->setFrom(array('contact@crosscrosscoffeecup.com'))
-                ->setTo(array($share['mail'] => $share['name']))
-                ->setBody($app['twig']->render('default/_share.email.html.twig', array('id' => $share['id'])),'text/html');
-        $send = $app['mailer']->send($message);
+		$send = false;
+		
+        if (filter_var($share['mail'], FILTER_VALIDATE_EMAIL) !== false) 
+		{
+			$message = \Swift_Message::newInstance()
+					->setSubject($share['name']." vous a envoyé une CROSS:CROSS COFFEE CUP")
+					->setFrom(array('contact@crosscrosscoffeecup.com'))
+					->setTo(array($share['mail'] => $share['name']))
+					->setBody($app['twig']->render('default/_share.email.html.twig', array('id' => $share['id'])),'text/html');
+			$send = $app['mailer']->send($message);
+		}
 
         return $app->redirect($app['url_generator']->generate('c4_cup', array(
             'id' => $share['id'],

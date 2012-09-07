@@ -7,8 +7,7 @@
     
     var files = new Array();
     
-    //--
-    //files.push('46','47','48','49','50','51', '52', '53');
+    //files.push('53');
     
     $.each(files, function(i, file) {
         les_objets_a_placer.shift();

@@ -102,7 +102,7 @@ footer{margin-top:50px; background:url(/img/bg/footer.jpg) repeat-x; overflow: h
     #social_btn a#twitter_btn{background-image:url(/img/btn/twitter_logo.svg)}
     #social_btn a#gplus_btn{background-image:url(/img/btn/gplus_logo.svg)}
     footer aside a, footer aside a:visited{border-bottom:1px dotted #fff; padding-bottom:10px; color:#ffffff;}
-        footer aside a:hover{border-color:#e04142;}
+        footer aside a:hover{color: #e04142; border-color:#e04142;}
     footer a#xp_branding{margin:0 auto; display: block; width: 939px; height: 165px; text-indent: -9999px; background: url(/img/xp_branding.png) 0 0 no-repeat;}
 
 /*PAGE CREATION*/

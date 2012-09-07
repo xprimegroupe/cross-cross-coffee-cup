@@ -54,7 +54,7 @@ $app->error(function (\Exception $e, $code) use ($app)
             {
                 return;
             }
-            return $app['twig']->render('transversal/error.html.twig', array('code' => $code));
+            return $app['twig']->render('default/error.html.twig', array('code' => $code));
             });
 
 return $app;
