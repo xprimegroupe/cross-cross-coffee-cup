@@ -1,10 +1,11 @@
 <?php
-
+date_default_timezone_set('europe/paris');
 $loader = require __DIR__ . '/../vendor/autoload.php';
 
 use Silex\Application;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Gedmo\Timestampable\TimestampableListener;
+use Symfony\Component\HttpFoundation\Request;
 
 $app = new Application();
 
@@ -56,5 +57,10 @@ $app->error(function (\Exception $e, $code) use ($app)
             }
             return $app['twig']->render('default/error.html.twig', array('code' => $code));
             });
+
+if('preprod' == $app['env']) {
+    //-- hack for PP(xpfabric)
+    Request::trustProxyData();
+}
 
 return $app;

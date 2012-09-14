@@ -1,3 +1,8 @@
-/nbproject
-/phing
+/vendor/*
+/app/logs/*
+/app/cache/*
+/composer.lock
+/composer.phar
 phpunit.xml
+/_phing
+/nbproject
