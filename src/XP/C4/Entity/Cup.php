@@ -89,4 +89,21 @@ class Cup
         return $this->created_at;
     }
 
+    public function getImageFile()
+    {
+        if (strpos($this->getImgBig(), 'data:image/png;base64,') !== 0)
+        {
+            return false;
+        }
+        $img = str_replace('data:image/png;base64,', '', $this->getImgBig());
+        $img = str_replace(' ', '+', $img);
+
+        $file = sys_get_temp_dir () . '/' . md5(time() . rand(0, 999999)) . '.png';
+        if (file_put_contents($file, base64_decode($img)) === false)
+        {
+            return false;
+        }
+        return $file;
+    }
+
 }

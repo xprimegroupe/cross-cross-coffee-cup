@@ -9,6 +9,7 @@ if ($app['debug'])
 }
 $app['charset'] = 'UTF-8';
 $app['locale'] = 'en';
+$app['cache_dir'] = __DIR__.'/../cache';
 
 //-- google analytics U-XXXXXXX
 $app['google_analytics'] = getenv('google_analytics') != null ? getenv('google_analytics') : false;

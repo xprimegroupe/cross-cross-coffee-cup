@@ -18,6 +18,8 @@ $(document).ready(function() {
     var meshandles = [];
 
     var inc = 0;
+    
+    $("#vector").hide();
 
     $.each(les_objets_a_placer, function(i, elt) {
 
@@ -46,14 +48,17 @@ $(document).ready(function() {
         forme.transform(all_pos[i]);
     
         /*FREETRANSFROM*/
-        var ft = paper.freeTransform(forme);
-
-        ft.setOpts({
+        var ft = paper.freeTransform(forme, {
             keepRatio: true,
             draw: "circle",
             rotate: "axisX",
             scale: "axisX",
             drag: "self"
+        },function(ft, event) {
+            if(event[0] == "drag end") {
+                $("#vector").show();
+            }
+            
         });
 
         //HIDE THE HANDLES
@@ -313,7 +318,12 @@ $(document).ready(function() {
         });
         
         request.done(function(id) {
-            document.location.href = "/c4/cup/" + id;
+            if(id) {
+                document.location.href = "/c4/cup/" + id;
+            } else {
+                alert('Error retry later');
+            }
+            
         });
     });
 
