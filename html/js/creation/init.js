@@ -295,6 +295,8 @@ $(document).ready(function() {
 
     
     /* HD */
+    var submit_action = true;
+    
     $('#vector').click(function(){
         the_hide();
 
@@ -305,26 +307,37 @@ $(document).ready(function() {
         var name = $('#name').val();
 
         $('#vector_render').val(svg);
-
-        var request = $.ajax({
-            "type": "POST",
-            "url": "/c4/cup",
-            "data": {
-                twitter: twitter, 
-                name: name, 
-                svg: img
-            } ,
-            "dataType": "json"
-        });
         
-        request.done(function(id) {
-            if(id) {
-                document.location.href = "/c4/cup/" + id;
-            } else {
-                alert('Error retry later');
-            }
+        if(submit_action) {
+            var request = $.ajax({
+                "type": "POST",
+                "url": "/c4/cup",
+                "data": {
+                    twitter: twitter, 
+                    name: name, 
+                    svg: img
+                } ,
+                "beforeSend": function() {
+                    submit_action = false;
+                },
+                "dataType": "json"
+            });
+
+            request.done(function(id) {
+                if(id) {
+                    document.location.href = "/c4/cup/" + id;
+                } else {
+                    submit_action = true;
+                    alert('Error retry later');
+                }
+
+            });
             
-        });
+            request.fail(function(){
+                submit_action = true;
+                alert('Error retry later');
+            });
+        }
     });
 
 
